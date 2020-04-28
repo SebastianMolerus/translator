@@ -1,27 +1,15 @@
 #include <iostream>
 #include <sstream>
-#include "Parser.h"
 
-#include "Word.h"
-#include "Token.h"
+#include "Lexer.h"
 #include "Num.h"
 
 using namespace std;
 
-stringstream read_input()
-{
-    stringstream ss;
-    for(char cc; cin.get(cc) && 'q' != tolower(cc);)
-    {
-        ss<<cc;
-    }
-    return ss;
-}
-
-
 int main() {
 
+    auto t2 = Lexer{}.scan();
 
-    auto p = Parser(read_input());
-    p.expr();
+    cout<<static_cast<Num*>(t2.get())->m_value;
 }
+
